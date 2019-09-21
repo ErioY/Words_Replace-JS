@@ -1,0 +1,43 @@
+<!--
+ * @Autor: ErioY
+ * @Date: 2019-09-20 19:12:48
+ * @Email: 1973545559@qq.com
+ * @Github: https://github.com/ErioY
+ * @LastEditors: ErioY
+ * @LastEditTime: 2019-09-20 20:01:49
+ -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+</head>
+<body>
+    <input type="text">
+    <button>输出</button>
+    <br />
+    <input type="text">
+    <button>设置为敏感词</button>
+    <p></p>
+    <script>
+    // 敏感词过滤，在一个文本框输入内容并点击按钮时，
+    // 敏感词换成对应数量的*，并在另一个输入框里展示。注意：需要用到 | ，正则里的或者
+    var aInput = document.querySelectorAll("input");
+    var aBtn = document.querySelectorAll("button");
+    var oP = document.querySelector("p");
+    var re = /a/;
+    // 点击设置时
+    aBtn[1].onclick = function () {
+        re = new RegExp(aInput[1].value, "g"); // g：全局匹配
+    }
+    aBtn[0].onclick = function () {
+        // 替换敏感词并赋值给P标签
+        oP.innerHTML = aInput[0].value.replace(re, function ($0) {
+            return new Array($0.length + 1).join("*");
+        });
+    }
+    </script>
+</body>
+</html>
